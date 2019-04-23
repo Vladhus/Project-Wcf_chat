@@ -73,5 +73,12 @@ namespace ChatClient
         {
             DisconnectUser();
         }
+
+       
+
+        private void Message_keyDown(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 }

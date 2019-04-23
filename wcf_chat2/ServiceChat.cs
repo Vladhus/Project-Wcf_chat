@@ -10,9 +10,22 @@ namespace wcf_chat2
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class ServiceChat : IServiceChat
     {
-        public int Connect()
+        List<ServerUser> users = new List<ServerUser>();
+        int nextId = 1;
+
+        public int Connect(string name)
         {
-            throw new NotImplementedException();
+            ServerUser user = new ServerUser() {
+                ID = nextId,
+            Name = name,
+            operationContext = OperationContext.Current
+
+
+            };
+            nextId++;
+            SendMsg(user.Name + "connect to the chat");
+            users.Add(user);
+            return user.ID;
         }
 
         public void Disconnect(int id)

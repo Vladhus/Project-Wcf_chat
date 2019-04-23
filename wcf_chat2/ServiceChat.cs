@@ -16,11 +16,9 @@ namespace wcf_chat2
         public int Connect(string name)
         {
             ServerUser user = new ServerUser() {
-                ID = nextId,
+            ID = nextId,
             Name = name,
             operationContext = OperationContext.Current
-
-
             };
             nextId++;
             SendMsg(user.Name + "connect to the chat");
@@ -30,7 +28,12 @@ namespace wcf_chat2
 
         public void Disconnect(int id)
         {
-            throw new NotImplementedException();
+            var user = users.FirstOrDefault(i => i.ID == id);
+            if(user!=null)
+            {
+                users.Remove(user);
+                SendMsg(user.Name + "left chat");
+            }
         }
 
         public void SendMsg(string msg)

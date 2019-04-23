@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace ChatClient
 {
 
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window,ServiceChat.IServiceChatCallback
     {
         bool isConnected = false;
         public MainWindow()
@@ -51,6 +51,11 @@ namespace ChatClient
             {
                 ConnectUser();
             }
+        }
+
+        public void MsgCallback(string msg)
+        {
+            lbChat.Items.Add(msg);
         }
     }
 }

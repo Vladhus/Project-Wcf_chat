@@ -8,7 +8,7 @@ using System.Text;
 namespace wcf_chat2
 {
     
-    [ServiceContract(CallbackContract =typeof(IserverChatCallback))]
+    [ServiceContract(CallbackContract =typeof(IServerChatCallback))]
     public interface IServiceChat
     {
         [OperationContract]
@@ -20,7 +20,7 @@ namespace wcf_chat2
         [OperationContract(IsOneWay = true)]
         void SendMsg(string msg);
     }
-    public interface IserverChatCallback
+    public interface IServerChatCallback
     {
         [OperationContract]
         void MsgCallback(string msg);

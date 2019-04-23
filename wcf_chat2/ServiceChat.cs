@@ -7,6 +7,7 @@ using System.Text;
 
 namespace wcf_chat2
 {
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class ServiceChat : IServiceChat
     {
         public int Connect()

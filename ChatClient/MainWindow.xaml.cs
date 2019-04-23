@@ -19,6 +19,7 @@ namespace ChatClient
     public partial class MainWindow : Window,ServiceChat.IServiceChatCallback
     {
         bool isConnected = false;
+        ServiceChat.ServiceChatClient client;
         public MainWindow()
         {
             InitializeComponent();
@@ -56,6 +57,11 @@ namespace ChatClient
         public void MsgCallback(string msg)
         {
             lbChat.Items.Add(msg);
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

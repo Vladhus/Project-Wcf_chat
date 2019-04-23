@@ -21,7 +21,7 @@ namespace wcf_chat2
             operationContext = OperationContext.Current
             };
             nextId++;
-            SendMsg(user.Name + "connect to the chat");
+            SendMsg(user.Name + "connect to the chat",0);
             users.Add(user);
             return user.ID;
         }
@@ -32,13 +32,24 @@ namespace wcf_chat2
             if(user!=null)
             {
                 users.Remove(user);
-                SendMsg(user.Name + "left chat");
+                SendMsg(user.Name + "left chat",0);
             }
         }
 
-        public void SendMsg(string msg)
+        public void SendMsg(string msg,int id)
         {
-            throw new NotImplementedException();
+            foreach (var items in users)
+            {
+                string answer = DateTime.Now.ToShortTimeString();
+                var user = users.FirstOrDefault(i => i.ID == id);
+                if (user != null)
+                {
+                    answer += ":" + user.Name + " ";
+                }
+                answer += msg;
+                items.operationContext.GetCallbackChannel<IServerChatCallback>().MsgCallback(answer);
+            }
+
         }
     }
 }

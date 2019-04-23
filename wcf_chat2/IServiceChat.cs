@@ -18,11 +18,11 @@ namespace wcf_chat2
         void Disconnect(int id);
 
         [OperationContract(IsOneWay = true)]
-        void SendMsg(string msg);
+        void SendMsg(string msg,int id);
     }
     public interface IServerChatCallback
     {
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void MsgCallback(string msg);
     }
 

@@ -21,7 +21,7 @@ namespace wcf_chat2
             operationContext = OperationContext.Current
             };
             nextId++;
-            SendMsg(user.Name + "connect to the chat",0);
+            SendMsg(": "+ user.Name +"  " + "connect to the chat",0);
             users.Add(user);
             return user.ID;
         }
@@ -32,7 +32,7 @@ namespace wcf_chat2
             if(user!=null)
             {
                 users.Remove(user);
-                SendMsg(user.Name + "left chat",0);
+                SendMsg(": " + user.Name + "   " + "left chat",0);
             }
         }
 

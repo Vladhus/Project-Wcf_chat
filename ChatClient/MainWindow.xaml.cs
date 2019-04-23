@@ -30,12 +30,13 @@ namespace ChatClient
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            client = new ServiceChatClient(new System.ServiceModel.InstanceContext(this));
+           
         }
         void ConnectUser()
         {
             if (!isConnected)
             {
+                client = new ServiceChatClient(new System.ServiceModel.InstanceContext(this));
                 ID = client.Connect(tbUserName.Text);
                 tbUserName.IsEnabled = false;
                 bConDiscon.Content = "Disconnect";
@@ -47,6 +48,7 @@ namespace ChatClient
             if(isConnected)
             {
                 client.Disconnect(ID);
+                client = null;
                 tbUserName.IsEnabled = true;
                 bConDiscon.Content = "Connect";
                 isConnected = false;
@@ -67,6 +69,7 @@ namespace ChatClient
         public void MsgCallback(string msg)
         {
             lbChat.Items.Add(msg);
+            lbChat.ScrollIntoView(lbChat.Items[lbChat.Items.Count-1]);
         }
 
         private void Windows_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -78,7 +81,15 @@ namespace ChatClient
 
         private void Message_keyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.Key==Key.Enter)
+            {
+                if (client!=null)
+                {
+                    client.SendMsg(tbMessage.Text, ID);
+                    tbMessage.Text = string.Empty;
+                }
+                
+            }
         }
     }
 }

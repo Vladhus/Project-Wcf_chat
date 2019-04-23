@@ -7,11 +7,23 @@ using System.Text;
 
 namespace wcf_chat2
 {
-    // ПРИМЕЧАНИЕ. Команду "Переименовать" в меню "Рефакторинг" можно использовать для одновременного изменения имени интерфейса "IServiceChat" в коде и файле конфигурации.
-    [ServiceContract]
+    
+    [ServiceContract(CallbackContract =typeof(IserverChatCallback))]
     public interface IServiceChat
     {
         [OperationContract]
-        void DoWork();
+        int Connect();
+
+        [OperationContract]
+        void Disconnect(int id);
+
+        [OperationContract(IsOneWay = true)]
+        void SendMsg(string msg);
     }
+    public interface IserverChatCallback
+    {
+        [OperationContract]
+        void MsgCallback(string msg);
+    }
+
 }

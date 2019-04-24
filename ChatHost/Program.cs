@@ -9,7 +9,7 @@ namespace ChatHost
 {
     class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             using (var host = new ServiceHost(typeof(wcf_chat2.ServiceChat)))
             {

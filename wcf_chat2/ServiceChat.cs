@@ -14,7 +14,7 @@ namespace wcf_chat2
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class ServiceChat : IServiceChat
     {
-        List<ServerUser> users = new List<ServerUser>();
+       public static List<ServerUser> users = new List<ServerUser>();
         int nextId = 1;
 
         /*!

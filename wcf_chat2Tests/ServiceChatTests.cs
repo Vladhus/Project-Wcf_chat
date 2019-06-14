@@ -27,7 +27,8 @@ namespace wcf_chat2.Tests
             int testid = 1;
             ServiceChat obj = new ServiceChat();
             obj.Disconnect(testid);
-
+            var user =ServiceChat.users.FirstOrDefault(i => i.ID == testid);
+            Assert.AreEqual(user, null);
         }
 
         [TestMethod()]

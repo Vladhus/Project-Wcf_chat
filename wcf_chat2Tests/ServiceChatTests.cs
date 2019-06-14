@@ -15,10 +15,10 @@ namespace wcf_chat2.Tests
         public void ConnectTest()
         {
             string test = "vlad";
-            int trushka = 1;
+            int testtrue = 1;
             ServiceChat obj = new ServiceChat();
             int result = obj.Connect(test);
-            Assert.AreEqual(trushka, result);
+            Assert.AreEqual(testtrue, result);
         }
 
         [TestMethod()]

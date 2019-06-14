@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*!
+ * \version 1.0
+ * \date 17-05-2019
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -13,6 +17,11 @@ namespace wcf_chat2
         List<ServerUser> users = new List<ServerUser>();
         int nextId = 1;
 
+        /*!
+         * \brief metoda stwarza nowego usera, dodaje go listy użytkowników, informuje innych użytkowników o podłączeniu
+         *  aktualnego klienta i zwraca nowoutworzone ID podłączonego użytkownika.
+         * \param name imię użytkownika
+         */
         public int Connect(string name)
         {
             ServerUser user = new ServerUser() {
@@ -26,6 +35,12 @@ namespace wcf_chat2
             return user.ID;
         }
 
+        /*!
+         * \brief  metoda za pomocy przesłanego jako parametr ID wyszukuje z listu odpowiedniego użytkownika i usuwa go z listy
+         * podłączonych klientów, po czym informuje pozostałych podłączonych użytkowników 
+         * o pozostawieniu chatu wyłączonym użytkownikiem. 
+         * \param id unikatowa liczba
+         */
         public void Disconnect(int id)
         {
             var user = users.FirstOrDefault(i => i.ID == id);
@@ -35,7 +50,12 @@ namespace wcf_chat2
                 SendMsg(": " + user.Name + " " + "left chat",0);
             }
         }
-
+        /*!
+         * \brief metoda generuje wiadomość, która składa się z imienia użytkownika , 
+         *  bieżącej daty oraz bezpośredniej tekstowej wiadomości.
+         *  Jeszcze ta metoda wywołuje metodę “MsgCallback” która będzie zrealizowana na stronie użytkownika.  
+         * \param msg wiadomość do wysłania
+         */
         public void SendMsg(string msg,int id)
         {
             foreach (var items in users)

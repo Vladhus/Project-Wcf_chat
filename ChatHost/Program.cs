@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*!
+ * \file Program.cs
+ * \version 1.0
+ * \date 17-05-2019
+ * \brief realizacja hostu konsolowego
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*!
+ * \mainpage IserviceChat.cs
+ * \author Vladyslav Khusainov i Sofiia Shvets 
+ * \version 1.0
+ * \date 17-05-2019
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
